@@ -1,0 +1,26 @@
+[
+    {
+        "firstName": "chandan",
+        "lastName": "mahato",
+        "email": "cmhandan@gmail.com",
+        "password": "9807774772"
+    },
+    {
+        "firstName": "kamal",
+        "lastName": "mahato",
+        "email": "km@gmail.com",
+        "password": "89797"
+    },
+    {
+        "firstName": "fads",
+        "lastName": "fda",
+        "email": "fad",
+        "password": "fa"
+    },
+    {
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "password": ""
+    }
+]

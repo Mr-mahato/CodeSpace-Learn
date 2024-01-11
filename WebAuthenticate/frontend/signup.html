@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for new Account</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1 >Hello User</h1>
+    <input type="text" name="firstName" id="firstName" placeholder="Enter your firstName" />
+    <br>
+    <input type="text" name="lastName" id="lastName" placeholder="Enter your lastName" />
+    <br>
+    <input type="email" name="email" id="email" placeholder="Enter your email" />
+    <br>
+    <input type="password" name="password" id="password" placeholder="Enter your password" />
+    <br>
+    <button class="btn  btn-success" onclick="registerHere()">Register</button>
+    <a class="btn btn-primary" href="Login.html">Login</a>
+</body>
+<script>
+    function registerHere(){
+        var name = document.querySelector('#firstName').value;
+        var lastName = document.querySelector('#lastName').value;
+        var email = document.querySelector('#email').value;
+        var password = document.querySelector('#password').value;
+        console.log(`I am inside register function`);
+        fetch('http://localhost:3000/register',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json; charset=utf-8'
+            },
+            body:JSON.stringify({
+                firstName:name,
+                lastName:lastName,
+                email:email,
+                password:password
+            })
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+           alert(data.message);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+</script>
+
+</html>

@@ -1,8 +1,12 @@
 const express = require('express')
 const app = express();
 const fs = require('fs');
+
+// body-parser is required to take input from body or from some form input
 const bodyParser = require('body-parser');
 const port = 3000
+
+// we are using cors so that any request being made to our server hit its endpoint
 const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
@@ -21,15 +25,18 @@ app.post('/login',(req,res)=>{
   var  loggedVale = data;
   var flag=  0;
   loggedVale = JSON.parse(loggedVale);
-  loggedVale.forEach((val,ind , arr)=>{
-    if(val.email ==checkedValue.email && val.password == checkedValue.password)
-    {
-      flag =1;
-     res.send({message:'logged in successfully'});
-    }
-  })
-  if(flag==0)
-  res.send({message:'Users not verified'});
+
+  var ind = loggedVale.findIndex(val => val.email == checkedValue.email && val.password == checkedValue.password);
+  
+  if(ind == -1)
+  {
+    res.send({message:"Users not verified"});
+  }
+  else 
+  {
+    res.send({message:"logged in successfully"});
+  }
+
   })
 })
 app.post('/register',(req,res)=>{
